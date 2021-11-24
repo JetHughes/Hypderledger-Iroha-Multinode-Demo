@@ -14,6 +14,7 @@ I have also used my own Hyperledger Iroha container, which has been pushed onto 
 ## Running this example
 This example can be run by moving to the `multinode-network` directory and using the `manage-network.sh` script.
 - `./manage-network.sh up` will create a new four node network using docker compose
+
 You will need a new network for each run through of the test, as the tests involve creating new, unique objects on the blockchain and will fail if those objects are already created. You can stop and create a new network using `./manage-network.sh restart`
 
 From here, open a new terminal in the `usr_scripts` directory and run your choice of
