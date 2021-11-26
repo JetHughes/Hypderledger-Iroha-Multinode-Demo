@@ -1,6 +1,5 @@
 # Hyperledger Iroha Multinode Demo
 ## Hayden McAlister
-## 2021-11-24
 ---
 This is an archive of a working example of a multinode blockchain network running Hyperledger Iroha. This example creates a new network with four nodes, then runs some tests to demonstrate functionality of the network, focusing on expected behavior.
 
