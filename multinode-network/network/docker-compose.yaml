@@ -99,6 +99,7 @@ services:
         ipv4_address: 172.29.101.122
     ports:
       - "50052:50052"
+      - "7002:7002"
     volumes:
       - ./shared_init:/opt/init
       - ./node2:/opt/iroha_data
@@ -138,6 +139,7 @@ services:
         ipv4_address: 172.29.101.123
     ports:
       - "50053:50053"
+      - "7003:7003"
     volumes:
       - ./shared_init:/opt/init
       - ./node3:/opt/iroha_data
@@ -177,6 +179,7 @@ services:
         ipv4_address: 172.29.101.124
     ports:
       - "50054:50054"
+      - "7004:7004"
     volumes:
       - ./shared_init:/opt/init
       - ./node4:/opt/iroha_data
