@@ -15,19 +15,21 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-
 # Iroha peer 1
-IROHA_HOST_ADDR_1 = os.getenv('IROHA_HOST_ADDR_1', '172.29.101.121')
+IROHA_HOST_ADDR_1 = os.getenv('IROHA_HOST_ADDR_1', '127.0.0.1')
 IROHA_PORT_1 = os.getenv('IROHA_PORT_1', '50051')
 # Iroha peer 2
-IROHA_HOST_ADDR_2 = os.getenv('IROHA_HOST_ADDR_2', '172.29.101.122')
+IROHA_HOST_ADDR_2 = os.getenv('IROHA_HOST_ADDR_2', '127.0.0.1')
 IROHA_PORT_2 = os.getenv('IROHA_PORT_2', '50052')
 # Iroha peer 3
-IROHA_HOST_ADDR_3 = os.getenv('IROHA_HOST_ADDR_3', '172.29.101.123')
+IROHA_HOST_ADDR_3 = os.getenv('IROHA_HOST_ADDR_3', '127.0.0.1')
 IROHA_PORT_3 = os.getenv('IROHA_PORT_3', '50053')
 # Iroha peer 4
-IROHA_HOST_ADDR_4 = os.getenv('IROHA_HOST_ADDR_3', '172.29.101.124')
+IROHA_HOST_ADDR_4 = os.getenv('IROHA_HOST_ADDR_4', '127.0.0.1')
 IROHA_PORT_4 = os.getenv('IROHA_PORT_4', '50054')
+# Iroha peer 5
+IROHA_HOST_ADDR_5 = os.getenv('IROHA_HOST_ADDR_5', '127.0.0.1')
+IROHA_PORT_5 = os.getenv('IROHA_PORT_5', '50055')
 
 
 ADMIN_ACCOUNT_ID = os.getenv('ADMIN_ACCOUNT_ID', 'admin@test')
@@ -39,6 +41,7 @@ net_1 = IrohaGrpc('{}:{}'.format(IROHA_HOST_ADDR_1, IROHA_PORT_1), timeout=10)
 net_2 = IrohaGrpc('{}:{}'.format(IROHA_HOST_ADDR_2, IROHA_PORT_2), timeout=10)
 net_3 = IrohaGrpc('{}:{}'.format(IROHA_HOST_ADDR_3, IROHA_PORT_3), timeout=10)
 net_4 = IrohaGrpc('{}:{}'.format(IROHA_HOST_ADDR_4, IROHA_PORT_4), timeout=10)
+net_5 = IrohaGrpc('{}:{}'.format(IROHA_HOST_ADDR_5, IROHA_PORT_5), timeout=10)
 
 
 def trace(func):

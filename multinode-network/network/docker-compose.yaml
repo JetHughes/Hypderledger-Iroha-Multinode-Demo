@@ -6,7 +6,7 @@ networks:
     attachable: true
     ipam:
       config:
-        - subnet: 172.29.101.0/24
+        - subnet: 172.27.63.0/24
 
 volumes:
   iroha-postgres-vol1:
@@ -17,6 +17,8 @@ volumes:
     name: iroha-postgres-vol3
   iroha-postgres-vol4:
     name: iroha-postgres-vol4
+  iroha-postgres-vol5:
+    name: iroha-postgres-vol5
   blockstore1:
     name: blockstore1
   blockstore2:
@@ -25,6 +27,8 @@ volumes:
     name: blockstore3
   blockstore4:
     name: blockstore4
+  blockstore5:
+    name: blockstore5
 
 services:
   some-postgres1:
@@ -37,14 +41,14 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.21
+        ipv4_address: 172.27.63.21
     volumes:
       - type: volume
         source: iroha-postgres-vol1
         target: /var/lib/postgresql/data
 
   iroha1:
-    image: gamma749/iroha
+    image: hyperledger/iroha-burrow:latest
     container_name: iroha1
     restart: unless-stopped
     depends_on:
@@ -56,7 +60,7 @@ services:
       - /opt/init/entrypoint.sh
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.121
+        ipv4_address: 172.27.63.121
     ports:
       - "50051:50051"
       - "7001:7001"
@@ -77,14 +81,14 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.22
+        ipv4_address: 172.27.63.22
     volumes:
       - type: volume
         source: iroha-postgres-vol2
         target: /var/lib/postgresql/data
 
   iroha2:
-    image: gamma749/iroha
+    image: hyperledger/iroha-burrow:latest
     container_name: iroha2
     restart: unless-stopped
     depends_on:
@@ -96,7 +100,7 @@ services:
       - /opt/init/entrypoint.sh
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.122
+        ipv4_address: 172.27.63.122
     ports:
       - "50052:50052"
       - "7002:7002"
@@ -117,14 +121,14 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.23
+        ipv4_address: 172.27.63.23
     volumes:
       - type: volume
         source: iroha-postgres-vol3
         target: /var/lib/postgresql/data
 
   iroha3:
-    image: gamma749/iroha
+    image: hyperledger/iroha-burrow:latest
     container_name: iroha3
     restart: unless-stopped
     depends_on:
@@ -136,7 +140,7 @@ services:
       - /opt/init/entrypoint.sh
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.123
+        ipv4_address: 172.27.63.123
     ports:
       - "50053:50053"
       - "7003:7003"
@@ -157,14 +161,14 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.24
+        ipv4_address: 172.27.63.24
     volumes:
       - type: volume
         source: iroha-postgres-vol4
         target: /var/lib/postgresql/data
 
   iroha4:
-    image: gamma749/iroha
+    image: hyperledger/iroha-burrow:latest
     container_name: iroha4
     restart: unless-stopped
     depends_on:
@@ -176,7 +180,7 @@ services:
       - /opt/init/entrypoint.sh
     networks:
       iroha-network:
-        ipv4_address: 172.29.101.124
+        ipv4_address: 172.27.63.124
     ports:
       - "50054:50054"
       - "7004:7004"
@@ -186,3 +190,43 @@ services:
       - type: volume
         source: blockstore4
         target: /tmp/block_store4
+
+  some-postgres5:
+    image: postgres:13
+    container_name: some-postgres5
+    command: -c max_prepared_transactions=100
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      iroha-network:
+        ipv4_address: 172.27.63.25
+    volumes:
+      - type: volume
+        source: iroha-postgres-vol5
+        target: /var/lib/postgresql/data
+
+  iroha5:
+    image: hyperledger/iroha-burrow:latest
+    container_name: iroha5
+    restart: unless-stopped
+    depends_on:
+      - some-postgres5
+    tty: true
+    environment:
+      - KEY=node5
+    entrypoint:
+      - /opt/init/entrypoint.sh
+    networks:
+      iroha-network:
+        ipv4_address: 172.27.63.125
+    ports:
+      - "50055:50055"
+      - "7005:7005"
+    volumes:
+      - ./shared_init:/opt/init
+      - ./node5:/opt/iroha_data
+      - type: volume
+        source: blockstore5
+        target: /tmp/block_store5
