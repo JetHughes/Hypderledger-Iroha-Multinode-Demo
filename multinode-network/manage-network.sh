@@ -1,8 +1,7 @@
-
 function up(){
 
+    echo up
     docker-compose -f network/docker-compose.yaml up -d
-    
 }
 
 function pause(){

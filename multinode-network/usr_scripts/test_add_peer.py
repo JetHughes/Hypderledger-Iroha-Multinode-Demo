@@ -131,7 +131,6 @@ def test_call_contract():
     logging.info("\tSUCCESSFULLY USED MINT FUNCTION")
 
 if __name__=="__main__":
-    #logging.basicConfig(level=logging.DEBUG)
     logging.basicConfig(level=logging.DEBUG)
     logging.debug("STARTING BASIC NETWORK TESTS")
 
@@ -154,31 +153,7 @@ if __name__=="__main__":
     input(f"{bcolors.OKGREEN}Test cal smart contract{bcolors.ENDC}")
     test_call_contract()
     print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if admin can create a domain{bcolors.ENDC}")
-    # test_create_domain()
-    # print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if an admin can create an asset in the new domain{bcolors.ENDC}")
-    # test_create_asset()
-    # print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if an admin can add the new asset to their account{bcolors.ENDC}")
-    # test_add_asset()
-    # print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if an admin can create new users, using each node{bcolors.ENDC}")
-    # test_create_users(node_grpcs())
-    # print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if an admin can transfer the new asset to each new account{bcolors.ENDC}")
-    # test_transfer_asset_to_users(node_grpcs())
-    # print(f"{'-'*80}\n\n")
-
-    # input(f"{bcolors.OKGREEN}Test if an admin can query the new asset on each node{bcolors.ENDC}")
-    # test_query_on_asset(node_grpcs())
-    # print(f"{'-'*80}\n\n")
-
+    
     logging.debug("FINISHED BASIC NETWORK TESTS")
     logging.debug("SAVING LOGS TO network_testing DIRECTORY")
 

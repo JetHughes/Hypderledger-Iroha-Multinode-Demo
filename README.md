@@ -7,7 +7,7 @@ This is an archive of a working example of a multinode blockchain network runnin
 ## Dependencies
 In these tests I have used docker, docker-compose, and python 3.10 (although python 3.X should work fine). You will also need the iroha python package, available by running `pip3 install iroha`
 
-I have also used my own Hyperledger Iroha container, which has been pushed onto DockerHub under the [gamma749/iroha](https://hub.docker.com/repository/docker/gamma749/iroha) repo. 
+The docker container used is `hyperledger/iroha-burrow:latest`.
 
 ---
 ## Running this example
